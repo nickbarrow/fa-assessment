@@ -10,7 +10,6 @@ function processInput(str) {
     // goal is to reduce str2 to array of ONLY letters which would need changed
     for (let i = 0; i < str1.length; i++) {
       let sharedLetter = str2.indexOf(str1[i]);
-      console.log('sharedLetter: ', sharedLetter);
       // if letter is shared, remove from str2
       if (sharedLetter >= 0) str2.splice(sharedLetter, 1);
     }
