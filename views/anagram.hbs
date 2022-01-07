@@ -1,0 +1,32 @@
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+<p>
+  <a href="/">Return to Home</a>
+</p>
+
+<p>Enter a string:</p>
+<form id="anagramForm">
+  <input id="anagramInput" />
+  <button type="submit">Submit</button>
+</form>
+<p id="changes"></p>
+
+<script>
+  document.querySelector('#anagramForm').addEventListener('submit', function (e) {
+    e.preventDefault();
+    let userInput = document.querySelector('#anagramInput').value
+    // prompt user for a string if none entered
+    if (!userInput) {
+      alert('Please enter a string to test.');
+      return false;
+    }
+
+    // use jquery ajax as its much easier than xmlhttprequests
+    $.post('http://localhost:3000/anagram/test', {
+      'text': userInput
+    })
+    .done(function (r) {
+      document.querySelector('#changes').innerHTML = `${r.data}${r.data >= 0 ? ' changes required' : ''}`;
+    });
+  });
+</script>

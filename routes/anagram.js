@@ -6,13 +6,14 @@ const { processInput } = require('../controllers/anagram')
 /* GET users listing. */
 router
   .route('/')
-  .get(function(req, res, next) {
-    return res.render('anagramInput');
-  })
+  .get(function (req, res, next) {
+    return res.render('anagram');
+  });
+
+router
+  .route('/test')
   .post(function (req, res) {
-    return res.render('anagramOutput', {
-      data: processInput(req.body.userInput)
-    })
+    return res.json({ data: processInput(req.body.text) });
   });
 
 module.exports = router;
